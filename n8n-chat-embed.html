@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chat n8n incrustado</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css"
+    />
+    <style>
+      :root {
+        --chat--color-primary: #0088cc;
+        --chat--color-secondary: #20b69e;
+      }
+
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+        background: #f4f6fb;
+      }
+
+      main {
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 2rem;
+      }
+
+      #n8n-chat {
+        width: 100%;
+        max-width: 420px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div id="n8n-chat"></div>
+    </main>
+    <script type="module">
+      import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+      createChat({
+        target: '#n8n-chat',
+        mode: 'window',
+        webhookUrl:
+          'https://n8n-n8n.folxpm.easypanel.host/webhook/e410d7c6-e19d-4abb-a0c5-089769382606/chat',
+        showWelcomeScreen: true,
+        defaultLanguage: 'es',
+        initialMessages: [
+          '¡Hola! 👋',
+          'Soy tu asistente virtual de ClinicAI, ¿cómo puedo ayudarte hoy?'
+        ],
+        i18n: {
+          es: {
+            title: '¡Hola! 👋',
+            subtitle: 'Hablemos, estoy aquí para ayudarte en todo momento.',
+            footer: '',
+            getStarted: 'Nueva conversación',
+            inputPlaceholder: 'Escribe tu pregunta…'
+          }
+        },
+        enableStreaming: true
+      });
+    </script>
+  </body>
+</html>
